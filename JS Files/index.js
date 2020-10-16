@@ -21,33 +21,41 @@ console.log(theInputs);
 
 theInputs.addEventListener('submit', function (event) {
     event.preventDefault();
-    const data = {
-        title: titlei.value,
-        author: authori.value,
-        genre: genrei.value,
-        status: bStatusi.value,
-        pages: pagesi.value,
-        rating: ratingi.value,
-        isbn: isbni.value,
-        coverURL: "bookCover.jpg"
+    if (event.submitter.id == "save") {
+        updateBook();
     }
-    console.log(data);
-    fetch("http://localhost:8080/addbook", { //Make request
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': "application/json"
+    else if(event.submitter.id == "add"){
+        const data = {
+            title: titlei.value,
+            author: authori.value,
+            genre: genrei.value,
+            status: bStatusi.value,
+            pages: pagesi.value,
+            rating: ratingi.value,
+            isbn: isbni.value,
+            coverURL: "bookCover.jpg"
         }
-    }).then(response => { // Receive response
-        return response.json(); // Convert response body to json
-    }).then(data => { //json data from previous .then()
-        addCards();
         console.log(data);
-        console.log("got here");
-        this.reset();
-    }).catch(error => console.log(error));
-    clearValues();
-    disableEdit();
+        fetch("http://localhost:8080/addbook", { //Make request
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': "application/json"
+            }
+        }).then(response => { // Receive response
+            return response.json(); // Convert response body to json
+        }).then(data => { //json data from previous .then()
+            addCards();
+            console.log(data);
+            console.log("got here");
+            this.reset();
+        }).catch(error => console.log(error));
+        clearValues();
+        disableEdit();
+    }
+    else{
+        console.log("you broke it");
+    }
 });
 function addCards() {
     let i = 0;
@@ -118,25 +126,27 @@ function removeBook() {
     location.reload();
 }
 function changeBook() {
-    setTimeout(() => {  console.log("World!"); 
-    enableEdit();
-    var listItem = document.querySelector("li.active");
-    console.log("http://localhost:8080/getbook/" + listItem.getAttribute("data-id"));
-    fetch("http://localhost:8080/getbook/" + listItem.getAttribute("data-id"))
-        .then(response => response.json())
-        .then(receivedData => {
-            titlei.value = receivedData.title;
-            authori.value = receivedData.author;
-            genrei.value = receivedData.genre;
-            bStatusi.value = receivedData.status;
-            pagesi.value = receivedData.pages;
-            ratingi.value = receivedData.rating;
-            isbni.value = receivedData.isbn;
-        })
-        .catch(error => console.error(error));
-    disableEdit();}, 600);
+    setTimeout(() => {
+        enableEdit();
+        var listItem = document.querySelector("li.active");
+        console.log("http://localhost:8080/getbook/" + listItem.getAttribute("data-id"));
+        fetch("http://localhost:8080/getbook/" + listItem.getAttribute("data-id"))
+            .then(response => response.json())
+            .then(receivedData => {
+                titlei.value = receivedData.title;
+                authori.value = receivedData.author;
+                genrei.value = receivedData.genre;
+                bStatusi.value = receivedData.status;
+                pagesi.value = receivedData.pages;
+                ratingi.value = receivedData.rating;
+                isbni.value = receivedData.isbn;
+            })
+            .catch(error => console.error(error));
+        disableEdit();
+    }, 600);
 }
-function updateBook(){
+function updateBook() {
+    var listItem = document.querySelector("li.active");
     const data = {
         title: titlei.value,
         author: authori.value,
@@ -148,8 +158,8 @@ function updateBook(){
         coverURL: "bookCover.jpg"
     }
     console.log(data);
-    fetch("http://localhost:8080/addbook", { //Make request
-        method: "POST",
+    fetch("http://localhost:8080/updatebook?id="  + listItem.getAttribute("data-id"), { //Make request  + listItem.getAttribute("data-id")
+        method: "PUT",
         body: JSON.stringify(data),
         headers: {
             'Content-Type': "application/json"
@@ -157,13 +167,11 @@ function updateBook(){
     }).then(response => { // Receive response
         return response.json(); // Convert response body to json
     }).then(data => { //json data from previous .then()
-        addCards();
         console.log(data);
         console.log("got here");
         this.reset();
     }).catch(error => console.log(error));
-    clearValues();
-    disableEdit();
+    finishEdit();
 }
 
 //doesnt always seem to delete the right thing
