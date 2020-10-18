@@ -52,8 +52,6 @@
                         <option value="Currently Reading">Currently Reading</option>
                         <option value="Have Read">Have Read</option>
                         <option value="To Read">To Read</option>
-                        <option value="Read Again">Read Again</option>
-                        <option value="Never Again">Never Again</option>
                     </select></td>
                 <td><button id="filterButt" type="button" onclick="disableEdit()">Filter</button></td>
             </tr>
@@ -109,18 +107,12 @@
 
                 </tr>
                 <tr>
-                    <td> <label>Read Again:</label></td>
-                    <td><select id="bookReadAgain" name="again">
-                            <option value="defaultReadAgain">Yes/No</option>
-                            <option value="no">No</option>
-                            <option value="yes">Yes</option>
-                        </select></td>
                     <td><label>Pages:</label></td>
                     <td><input id="bookPages" name="pages"></td>
-                </tr>
-                <tr>
                     <td><label>Rating:</label></td>
                     <td><input id="bookRating" name="rating"></td>
+                </tr>
+                <tr>         
                     <td><label>ISBN:</label></td>
                     <td><input id="bookISBN" name="isbn"></td>
                 </tr>
@@ -130,12 +122,12 @@
                 <table class="central">
                     <tr>
                         <div id="mainButts">
-                            <td><button id="add" type="submit">Add Book</button></td>
+                            <td><button id="add" type="submit" value = "addBook">Add Book</button></td>
                             <td><button id="update" type="button" onclick="startEdit()">Update Book</button></td>
                             <td><button id="clear" type="button" onclick="clearValues()">Clear Details</button></td>
                             <td><button id="remove" type="button" onclick="removeBook()">Remove Book</button></td>
                             <div id="changesButts">
-                                <td><button id="save" type="button" onclick="finishEdit()">Save Changes</button></td>
+                                <td><button id="save" type="submit" value = "saveEdit">Save Changes</button></td>
                                 <td><button id="cancel" type="button" onclick="finishEdit()">Cancel Changes</button>
                                 </td>
                             </div>

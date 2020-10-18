@@ -14,12 +14,9 @@ const title = document.getElementById("bookTitle");
 const author = document.getElementById("bookAuthor");
 const bStatus = document.getElementById("bookStatus");
 const genre = document.getElementById("bookGenre");
-const again = document.getElementById("bookReadAgain");
 const pages = document.getElementById("bookPages");
 const rating = document.getElementById("bookRating");
 const isbn = document.getElementById("bookISBN");
-
-//document.querySelectorAll("div.centered table input, div.centered table select");
 
 function startEdit() {
     uButton.style.display = "none";
@@ -47,7 +44,6 @@ function disableEdit() {
     author.disabled = true;
     bStatus.disabled = true;
     genre.disabled = true;
-    again.disabled = true;
     pages.disabled = true;
     rating.disabled = true;
     isbn.disabled = true;
@@ -58,7 +54,6 @@ function enableEdit() {
     author.disabled = false;
     bStatus.disabled = false;
     genre.disabled = false;
-    again.disabled = false;
     pages.disabled = false;
     rating.disabled = false;
     isbn.disabled = false;
@@ -69,7 +64,6 @@ function clearValues() {
     author.value = null;
     bStatus.selectedIndex = 0;
     genre.selectedIndex = 0;
-    again.selectedIndex = 0;
     pages.value = null;
     rating.value = null;
     isbn.value = null;
