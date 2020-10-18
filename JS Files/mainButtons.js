@@ -18,8 +18,6 @@ const pages = document.getElementById("bookPages");
 const rating = document.getElementById("bookRating");
 const isbn = document.getElementById("bookISBN");
 
-//document.querySelectorAll("div.centered table input, div.centered table select");
-
 function startEdit() {
     uButton.style.display = "none";
     mB.style.display = "block";

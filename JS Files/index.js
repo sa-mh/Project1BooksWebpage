@@ -172,8 +172,3 @@ function updateBook() {
     }).catch(error => console.log(error));
     finishEdit();
 }
-
-//doesnt always seem to delete the right thing
-//https://github.com/JHarry444/SpringDucks/tree/master/src/main/java/com/qa/duck/service
-//https://github.com/JHarry444/CN-FE/blob/main/07_example_site/index.html
-//update?id=id
