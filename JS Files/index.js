@@ -3,7 +3,6 @@ const titlei = document.getElementById("bookTitle");
 const authori = document.getElementById("bookAuthor");
 const bStatusi = document.getElementById("bookStatus");
 const genrei = document.getElementById("bookGenre");
-const againi = document.getElementById("bookReadAgain");
 const pagesi = document.getElementById("bookPages");
 const ratingi = document.getElementById("bookRating");
 const isbni = document.getElementById("bookISBN");
